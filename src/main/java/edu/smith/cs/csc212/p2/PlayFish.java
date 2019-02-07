@@ -19,11 +19,11 @@ public class PlayFish extends GFX {
 	/**
 	 * Game size (visual). TODO Try changing this to 600.
 	 */
-	public static int VISUAL_GRID_SIZE = 400;
+	public static int VISUAL_GRID_SIZE = 700;
 	/**
 	 * Game size (logical). TODO Try changing this to 15 or so.
 	 */
-	public static int LOGICAL_GRID_SIZE = 10;
+	public static int LOGICAL_GRID_SIZE = 15;
 	/**
 	 * The words appear in the top part of the screen.
 	 */
@@ -53,7 +53,7 @@ public class PlayFish extends GFX {
 		game = new FishGame(LOGICAL_GRID_SIZE, LOGICAL_GRID_SIZE);
 		gameState.color = Color.WHITE;
 		gameState.setFont(TextBox.BOLD_FONT);
-		gameState.setFontSize(TOP_PART / 3.0);
+		gameState.setFontSize(TOP_PART / 2.0);
 		topRect = new Rectangle2D.Double(0, 0, getWidth(), TOP_PART);
 	}
 
