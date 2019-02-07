@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.RoundRectangle2D;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * It would be awful nice to have multi-colored rocks at random.
@@ -29,7 +30,7 @@ public class Rock extends WorldObject {
 	};
 	
 	// TODO(lab): introduce a member here that indexes the ROCK_COLORS array.
-	
+	Color x = ROCK_COLORS[rand.nextInt(9-0)];
 	/**
 	 * Construct a Rock in our world.
 	 * @param world - the grid world.
@@ -44,9 +45,8 @@ public class Rock extends WorldObject {
 	 * Draw a rock!
 	 */
 	
-	Random rand = new Random();
 	public void draw(Graphics2D g) {
-		g.setColor(ROCK_COLORS[rand.nextInt(9-0)]);
+		g.setColor(x);
 		RoundRectangle2D rock = new RoundRectangle2D.Double(-.5,-.5,1,1,0.3,0.3);
 		g.fill(rock);
 	}
