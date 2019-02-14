@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
+import me.jjfoley.gfx.IntPoint;
+
 /**
  * This class manages our model of gameplay: missing and found fish, etc.
  * @author jfoley
@@ -59,11 +61,17 @@ public class FishGame {
 		
 		// TODO(lab) Generate some more rocks!
 		// TODO(lab) Make 5 into a constant, so it's easier to find & change.
-		for (int i=0; i=5; i++) {
+		int NUM_ROCKS = 10;
+		for (int i=0; i<NUM_ROCKS; i++) {
 			world.insertRockRandomly();
 		}
-		
-		// TODO(lab) Make the snail!
+		for (int i=0; i<10; i++) {
+			world.insertFallingRockRandomly();
+		}
+	
+		for (int i=0; i<3; i++) {
+			world.insertSnailRandomly();
+		}
 		
 		// Make the player out of the 0th fish color.
 		player = new Fish(0, world);
@@ -116,12 +124,13 @@ public class FishGame {
 				// Remove this fish from the missing list.
 				missing.remove(wo);
 				
-				// Remove from world.
-				// TODO(lab): add to found instead! (So we see objectsFollow work!)
-				world.remove(wo);
+				// add fish to found.
+				found.add((Fish) wo);
 				
 				// Increase score when you find a fish!
-				score += 10;
+				// we want the score to be different for each fish so let's add a random int each time 
+				Random rand = new Random();
+				score += rand.nextInt(100-1);
 			}
 		}
 		
@@ -139,12 +148,19 @@ public class FishGame {
 	private void wanderMissingFish() {
 		Random rand = ThreadLocalRandom.current();
 		for (Fish lost : missing) {
-			// 30% of the time, lost fish move randomly.
-			if (rand.nextDouble() < 0.3) {
-				// TODO(lab): What goes here?
-			}
+			// 30% of the time, lost fish move randomly
+			if (lost.fastScared == true & rand.nextDouble() < 0.8) {
+				lost.moveRandomly();
+				
+			} else if (rand.nextDouble() < 0.3) {
+				lost.moveRandomly();
+				
+			}	
 		}
+			
 	}
+
+	
 
 	/**
 	 * This gets a click on the grid. We want it to destroy rocks that ruin the game.
@@ -156,6 +172,8 @@ public class FishGame {
 		System.out.println("Clicked on: "+x+","+y+ " world.canSwim(player,...)="+world.canSwim(player, x, y));
 		List<WorldObject> atPoint = world.find(x, y);
 		// TODO(P2) allow the user to click and remove rocks.
+		
+		
 
 	}
 	

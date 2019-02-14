@@ -23,7 +23,7 @@ public class PlayFish extends GFX {
 	/**
 	 * Game size (logical). TODO Try changing this to 15 or so.
 	 */
-	public static int LOGICAL_GRID_SIZE = 15;
+	public static int LOGICAL_GRID_SIZE = 17;
 	/**
 	 * The words appear in the top part of the screen.
 	 */

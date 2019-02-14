@@ -149,6 +149,11 @@ public class World {
 		insertRandomly(r);
 		return r;
 	}
+	public FallingRock insertFallingRockRandomly() {
+		FallingRock fr = new FallingRock(this);
+		insertRandomly(fr);
+		return fr;
+	}
 	
 	/**
 	 * Insert a new Fish into the world at random of a specific color.
@@ -201,7 +206,18 @@ public class World {
 			// The other fish shouldn't step "on" the player, the player should step on the other fish.
 			if (it instanceof Snail) {
 				// This if-statement doesn't let anyone step on the Snail.
-				// The Snail(s) are not gonna take it.
+				return false;
+			}
+			if (it instanceof Rock) {
+				// This if-statement doesn't let anyone step on the Rock.
+				return false;
+			}
+			if (it instanceof FallingRock) {
+				// This if-statement doesn't let anyone step on the FallingRocks.
+				return false;
+			}
+			// if it is not a player fish then it can not step on top of other fish
+			if(!isPlayer & it instanceof Fish) {
 				return false;
 			}
 		}

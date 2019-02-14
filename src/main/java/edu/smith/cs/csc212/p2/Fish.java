@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
+import java.util.Random;
 
 /**
  * Most Fish behavior lives up in WorldObject (a Fish just looks special!).
@@ -19,11 +20,13 @@ public class Fish extends WorldObject {
 			Color.red,
 			Color.green,
 			Color.yellow,
-			Color.red.brighter(),
-			Color.orange,
 			Color.white,
 			Color.darkGray,
-			Color.blue
+			Color.blue,
+			Color.magenta,
+			Color.CYAN,
+			Color.PINK,
+			Color.ORANGE
 			// TODO: (lab) Add more colors.
 			// TODO: (P2) Maybe make a special fish that is more points?
 	};
@@ -35,7 +38,8 @@ public class Fish extends WorldObject {
 	 * Whether or not this is the player;
 	 */
 	boolean player = false;
-	
+	Random r = new Random();
+	public boolean fastScared = r.nextBoolean();
 	/**
 	 * Called only on the Fish that is the player!
 	 */
